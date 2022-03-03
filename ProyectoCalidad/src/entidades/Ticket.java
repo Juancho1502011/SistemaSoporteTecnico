@@ -5,6 +5,8 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,16 +22,18 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Ticket implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column(name="Ticket_Problema")
     private String problema;
+    @Column(name="Ticket_Fecha",columnDefinition = "DATE")
+    private Date fecha;
     @Column(name="Ticket_Costo")
     private float costo;
     @Column(name="Ticket_Solucion")
     private String solucion;
-    @ManyToOne
-    @JoinColumn(name = "FK_Usuario", nullable = true, updatable = false)
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "FK_Usuario", nullable = true)
     private Usuario usuario;
 
     public Ticket() {
@@ -82,6 +86,12 @@ public class Ticket implements Serializable {
         this.usuario = usuario;
     }
     
-    
+     public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
     
 }

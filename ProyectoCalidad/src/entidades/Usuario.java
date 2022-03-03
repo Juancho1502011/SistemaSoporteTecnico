@@ -6,7 +6,6 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +23,7 @@ import javax.persistence.OneToMany;
 
 public class Usuario implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column(name="Usuario_Nombres")
     private String nombres;
@@ -34,7 +33,7 @@ public class Usuario implements Serializable {
     private String cedula;
     @Column(name="Usuario_Contraseña")
     private String contraseña;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "usuario")
     private List<Ticket> tickets;
     
     public Usuario(){
@@ -86,8 +85,21 @@ public class Usuario implements Serializable {
         return contraseña;
     }
 
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", cedula=" + cedula + ", contrase\u00f1a=" + contraseña + ", tickets=" + tickets + '}';
     }
     
     

@@ -4,7 +4,7 @@
  */
 package proyectocalidad;
 
-import Interfaces.InterfazUsuario;
+import InterfacesBD.InterfazUsuario;
 import entidades.Usuario;
 import proyectocalidad.gui.MenuPrincipal;
 import proyectocalidad.gui.MenuPrincipal;
@@ -20,9 +20,7 @@ public class ProyectoCalidad {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Usuario usuario = new Usuario("Juan Pablo", "Tovar Vallejo", "0605649383", "123");
-        new InterfazUsuario().insertarUsuario(usuario);
-        
+       
         MenuPrincipal menuprincipal = new MenuPrincipal();
         menuprincipal.setVisible(true);
     }
